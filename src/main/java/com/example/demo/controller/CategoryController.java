@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-//    @PostMapping(path = "/addCategory")
-//    public CategoryEntity addCategory(@RequestBody CategoryEntity category){
-//        return this.categoryDao.addCategory(category);
-//    }
+
 @RestController
 @RequestMapping(path = "/category")
 public class CategoryController {

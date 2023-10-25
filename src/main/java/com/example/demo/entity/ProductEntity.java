@@ -1,8 +1,6 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,8 +35,11 @@ public class ProductEntity {
     @Column(name = "category_id")
     private Integer categoryId;
 
+
+
     @Column(name = "brand_id")
     private Integer brandId;
+
 
     //--Relations--
 
@@ -63,13 +64,11 @@ public class ProductEntity {
     @Transient
     private String categoryName;
 
-
     public String getBrandName() {
         return this.brandEntity1.getBrandName();
     }
     public String getCategoryName() {
         return this.categoryEntity.getCategoryName();
     }
-
 
 }

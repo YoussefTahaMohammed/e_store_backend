@@ -40,9 +40,11 @@ public class CategoryBrandEntity {
     @Transient
     private String brandName;
 
+
     public String getCategoryName() {
         return this.categoryEntity.getCategoryName();
     }
+
 
     public String getBrandName() {
         return this.brandEntity.getBrandName();
