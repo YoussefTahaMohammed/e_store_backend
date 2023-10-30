@@ -18,4 +18,7 @@ public class WishlistServices {
     public Optional<WishlistEntity> findWishlistById(Integer wishlistId){
         return wishlistRepository.findById(wishlistId);
     }
+    public void deleteWishlistById(Integer id){
+        wishlistRepository.deleteById(id);
+    }
 }

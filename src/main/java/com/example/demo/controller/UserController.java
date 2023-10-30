@@ -24,4 +24,9 @@ public class UserController {
     public List<UserEntity> getAllUsers(){
         return this.userServices.getAllUsers();
     }
+    @DeleteMapping(path = "deleteUserById")
+    public void deleteUserById(@RequestParam Integer id){
+        userServices.deleteUserById(id);
+
+    }
 }

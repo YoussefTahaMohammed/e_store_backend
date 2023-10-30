@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -33,11 +32,18 @@ public class UserEntity {
     @Column(name = "wishlist_id")
     Integer wishlistId;
 
+    @Column(name = "cart_id")
+    Integer cartId;
+
 
     @OneToOne(mappedBy = "userEntity")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     WishlistEntity wishlistEntity;
 
+    @OneToOne(mappedBy = "userEntity")
+    @JsonManagedReference
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    CartEntity cartEntity;
 
 }
