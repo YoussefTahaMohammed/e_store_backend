@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.services.CategoryServices;
+
 import com.example.demo.entity.CategoryEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.services.CategoryServices;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 
@@ -11,10 +13,10 @@ import java.util.Map;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/category")
 public class CategoryController {
-    @Autowired
-    private CategoryServices categoryServices;
+    private final CategoryServices categoryServices;
 
     @PostMapping(path = "/addCategory")
     public Map<String,String> addCategory(@RequestBody CategoryEntity category){

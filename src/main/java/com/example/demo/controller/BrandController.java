@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.services.BrandServices;
+import com.example.demo.services.Impl.BrandServicesImplement;
 import com.example.demo.entity.BrandEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/brand")
+@RequiredArgsConstructor
 public class BrandController {
-    @Autowired
-    private BrandServices brandServices;
+    private final BrandServicesImplement brandServices;
 
     @PostMapping(path = "/addBrand")
     public Map<String, String> addBrand(@RequestBody BrandEntity brand){

@@ -1,19 +1,20 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.CategoryEntity;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.services.UserServices;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    UserServices userServices;
+
+    private final UserServices userServices;
 
     @PostMapping(path = "/addUser")
     public UserEntity addUser(@RequestBody UserEntity user){

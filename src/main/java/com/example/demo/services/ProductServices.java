@@ -1,31 +1,29 @@
 package com.example.demo.services;
 
 
-import com.example.demo.entity.ProductEntity;
+import com.example.demo.entity.*;
 
 
-import com.example.demo.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
 @Service
-public class ProductServices {
-    @Autowired
-    private ProductRepository productRepository;
+public interface ProductServices {
 
-    public ProductEntity addProduct(ProductEntity product) {
-        //Map<String,String> result = new HashMap<>();
-        this.productRepository.save(product);
-        //result.put("api_status", "success");
-        //result.put("message", "Product Added Successfully");
-        return this.productRepository.save(product);
-    }
+    Map<String, String> addProduct(ProductEntity product);
 
-    public List<ProductEntity> getAllProducts() {
-        return this.productRepository.findAll();
-    }
+    List<ProductEntity> getAllProducts();
+
+    ProductEntity findProductById(Integer id);
+
+    void addProductToCart(Integer productId, Integer userId);
+
+    void addProductToWishlist(Integer productId, Integer userId);
+
+    @Transactional
+    void deleteProductFromCart(Integer productId, Integer userId);
 }

@@ -1,13 +1,13 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+
 
 
 @AllArgsConstructor
@@ -33,10 +33,5 @@ public class OrderEntity {
 
     @Column(name = "order_status")
     private String orderStatus;
-
-//    @OneToMany(mappedBy = "orderEntity")
-//    @JsonManagedReference
-//    List<ProductEntity> productEntityList;
-
 
 }
