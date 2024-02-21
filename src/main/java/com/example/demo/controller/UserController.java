@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.UserEntity;
+import com.example.demo.model.entity.User;
 import com.example.demo.services.UserServices;
 import lombok.RequiredArgsConstructor;
 
@@ -17,12 +17,12 @@ public class UserController {
     private final UserServices userServices;
 
     @PostMapping(path = "/addUser")
-    public UserEntity addUser(@RequestBody UserEntity user){
+    public User addUser(@RequestBody User user){
         return this.userServices.addUser(user);
     }
 
     @GetMapping(path = "/getAllUsers")
-    public List<UserEntity> getAllUsers(){
+    public List<User> getAllUsers(){
         return this.userServices.getAllUsers();
     }
     @DeleteMapping(path = "deleteUserById")

@@ -1,6 +1,6 @@
 package com.example.demo.services.Impl;
 
-import com.example.demo.entity.BrandEntity;
+import com.example.demo.model.entity.Brand;
 import com.example.demo.repository.BrandRepository;
 import com.example.demo.services.BrandServices;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.*;
 
 public class BrandServicesImplement implements BrandServices {
     private final BrandRepository brandRepository;
-    public Map<String, String> addBrand(BrandEntity brand) {
+    public Map<String, String> addBrand(Brand brand) {
         Map<String, String> result = new HashMap<>();
 
         if (existsBrandByName(brand.getBrandName())) {
@@ -28,7 +28,12 @@ public class BrandServicesImplement implements BrandServices {
         return result;
     }
 
-    public List<BrandEntity> getAllBrands() {
+    public Brand findBrandById(Integer id){
+        Optional<Brand> returnedProduct = this.brandRepository.findById(id);
+        return returnedProduct.orElseGet(Brand::new);
+    }
+
+    public List<Brand> getAllBrands() {
         return brandRepository.findAllByOrderByBrandId();
     }
 

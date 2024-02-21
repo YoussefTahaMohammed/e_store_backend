@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,12 +17,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "wishlist")
-public class WishlistEntity {
+@Table(name = "cart")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wishlist_id")
-    Integer wishlistId;
+    @Column(name = "cart_id")
+    Integer cartId;
 
     @Column(name = "products_number")
     Integer productNumber;
@@ -30,7 +30,7 @@ public class WishlistEntity {
     @Column(name = "total_price")
     Double totalPrice;
 
-    public WishlistEntity(Integer productNumber, Double totalPrice) {
+    public Cart(Integer productNumber, Double totalPrice) {
         this.productNumber = productNumber;
         this.totalPrice = totalPrice;
     }
@@ -39,11 +39,11 @@ public class WishlistEntity {
     @JsonBackReference
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @JoinColumn(name = "wishlist_id",updatable = false,insertable = false)
-    UserEntity userEntity;
+    @JoinColumn(name = "cart_id",updatable = false,insertable = false)
+    User user;
 
-    @OneToMany(mappedBy = "wishlistEntity")
+    @OneToMany(mappedBy = "cart")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<ProductsWishlistEntity> productsWishlistEntities;
+    private List<ProductsCart> productsCartEntities;
 }

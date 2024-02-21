@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "brands")
-public class BrandEntity {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
@@ -26,12 +26,12 @@ public class BrandEntity {
 
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @OneToMany(mappedBy = "brandEntity")
-    private List<CategoryBrandEntity> categoryBrand;
+    @OneToMany(mappedBy = "brand")
+    private List<CategoryBrand> categoryBrand;
 
-    @OneToMany(mappedBy = "brandEntity1")
+    @OneToMany(mappedBy = "brand")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private  List<ProductEntity> productEntities;
+    private  List<Product> productEntities;
 
 }

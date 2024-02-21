@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 
 
-import com.example.demo.entity.OrderEntity;
+import com.example.demo.model.entity.Order;
 import com.example.demo.services.OrderServices;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ public class OrderController {
     private final OrderServices orderServices;
 
     @PostMapping(path = "/addOrder")
-    public OrderEntity addOrder(@RequestBody OrderEntity order){
+    public Order addOrder(@RequestBody Order order){
         return this.orderServices.addOrder(order);
     }
 }

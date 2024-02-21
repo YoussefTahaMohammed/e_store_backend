@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @Table(name = "orders")
-public class OrderEntity {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")

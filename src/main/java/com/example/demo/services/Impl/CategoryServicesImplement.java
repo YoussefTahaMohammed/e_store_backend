@@ -1,6 +1,7 @@
 package com.example.demo.services.Impl;
 
-import com.example.demo.entity.CategoryEntity;
+import com.example.demo.model.entity.Category;
+import com.example.demo.model.entity.Product;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.services.CategoryServices;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryServicesImplement implements CategoryServices {
     private final CategoryRepository categoryRepository;
 
-    public Map<String, String> addCategory(CategoryEntity category) {
+    public Map<String, String> addCategory(Category category) {
         Map<String, String> result = new HashMap<>();
         if (!existsCategoryByName(category.getCategoryName())) {
             this.categoryRepository.save(category);
@@ -29,8 +31,13 @@ public class CategoryServicesImplement implements CategoryServices {
         return result;
     }
 
-    public List<CategoryEntity> getAllCategories(){
+    public List<Category> getAllCategories(){
         return categoryRepository.findAllByOrderByCategoryId();
+    }
+
+    public Category findCategoryById(Integer id){
+        Optional<Category> returnedProduct = this.categoryRepository.findById(id);
+        return returnedProduct.orElseGet(Category::new);
     }
     public void deleteCategoryById(Integer id){
         categoryRepository.deleteById(id);

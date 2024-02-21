@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -11,32 +11,32 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "products_cart")
+@Table(name = "products_wishlist")
 @Entity
-public class ProductsCartEntity {
+public class ProductsWishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pc_id")
-    private Integer pcId;
+    @Column(name = "pw_id")
+    private Integer pwId;
 
     @Column(name = "product_id")
     private Integer productId;
 
-    @Column(name = "cart_id")
-    private Integer cartId;
+    @Column(name = "wishlist_id")
+    private Integer wishlistId;
 
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "product_id",insertable = false,updatable = false)
-    private ProductEntity productEntity;
+    private Product product;
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "cart_id",insertable = false,updatable = false)
-    private CartEntity cartEntity;
+    @JoinColumn(name = "wishlist_id",insertable = false,updatable = false)
+    private Wishlist wishlist;
 
-    public ProductsCartEntity(Integer productId, Integer cartId) {
+    public ProductsWishlist(Integer productId, Integer wishlistId) {
         this.productId = productId;
-        this.cartId = cartId;
+        this.wishlistId = wishlistId;
     }
 }

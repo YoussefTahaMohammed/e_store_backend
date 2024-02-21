@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Table(name = "category_brand")
 @Setter
 @Getter
-public class CategoryBrandEntity {
+public class CategoryBrand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
@@ -27,12 +27,12 @@ public class CategoryBrandEntity {
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "brand_id", insertable = false, updatable = false)
-    private BrandEntity brandEntity;
+    private Brand brand;
 
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    private CategoryEntity categoryEntity;
+    private Category category;
 
     @Transient
     private String categoryName;
@@ -42,12 +42,11 @@ public class CategoryBrandEntity {
 
 
     public String getCategoryName() {
-        return this.categoryEntity.getCategoryName();
+        return this.category.getCategoryName();
     }
 
-
     public String getBrandName() {
-        return this.brandEntity.getBrandName();
+        return this.brand.getBrandName();
     }
 
 }

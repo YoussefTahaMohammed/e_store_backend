@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "categories")
-public class CategoryEntity {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
@@ -26,12 +26,12 @@ public class CategoryEntity {
 
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @OneToMany(mappedBy = "categoryEntity")
-    private List<CategoryBrandEntity> categoryBrand;
+    @OneToMany(mappedBy = "category")
+    private List<CategoryBrand> categoryBrand;
 
-    @OneToMany(mappedBy = "categoryEntity")
+    @OneToMany(mappedBy = "category")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private  List<ProductEntity> productEntities;
+    private  List<Product> productEntities;
 
 }

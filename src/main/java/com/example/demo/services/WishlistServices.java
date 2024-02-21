@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 
-import com.example.demo.entity.WishlistEntity;
+import com.example.demo.model.entity.Wishlist;
 
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public interface WishlistServices {
 
 
-    WishlistEntity addWishlist(WishlistEntity wishlist);
+    Wishlist addWishlist(Wishlist wishlist);
 
-    WishlistEntity findWishlistById(Integer wishlistId);
+    Wishlist findWishlistById(Integer wishlistId);
 
     void deleteWishlistById(Integer id);
 }

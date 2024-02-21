@@ -1,7 +1,7 @@
 package com.example.demo.services.Impl;
 
 
-import com.example.demo.entity.ProductsWishlistEntity;
+import com.example.demo.model.entity.ProductsWishlist;
 import com.example.demo.repository.ProductsWishlistRepository;
 import com.example.demo.services.ProductWishlistServices;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class ProductWishlistServicesImplement implements ProductWishlistServices {
 
     private final ProductsWishlistRepository productWishlistRepository;
-    public void addToWishlist(ProductsWishlistEntity productsWishlist){
+    public void addToWishlist(ProductsWishlist productsWishlist){
         this.productWishlistRepository.save(productsWishlist);
     }
 }

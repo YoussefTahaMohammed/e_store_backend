@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.entity.CategoryEntity;
+import com.example.demo.model.entity.Category;
 import com.example.demo.services.CategoryServices;
 import lombok.RequiredArgsConstructor;
 
@@ -19,12 +19,12 @@ public class CategoryController {
     private final CategoryServices categoryServices;
 
     @PostMapping(path = "/addCategory")
-    public Map<String,String> addCategory(@RequestBody CategoryEntity category){
+    public Map<String,String> addCategory(@RequestBody Category category){
         return this.categoryServices.addCategory(category);
     }
 
     @GetMapping(path = "/getAllCategories")
-    public List<CategoryEntity> getAllCategories(){
+    public List<Category> getAllCategories(){
         return this.categoryServices.getAllCategories();
     }
 

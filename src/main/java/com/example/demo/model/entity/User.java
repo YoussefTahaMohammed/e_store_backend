@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -36,14 +36,14 @@ public class UserEntity {
     Integer cartId;
 
 
-    @OneToOne(mappedBy = "userEntity")
+    @OneToOne(mappedBy = "user")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    WishlistEntity wishlistEntity;
+    Wishlist wishlist;
 
-    @OneToOne(mappedBy = "userEntity")
+    @OneToOne(mappedBy = "user")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    CartEntity cartEntity;
+    Cart cart;
 
 }

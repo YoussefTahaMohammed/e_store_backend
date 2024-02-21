@@ -1,8 +1,8 @@
 package com.example.demo.services.Impl;
 
-import com.example.demo.entity.CartEntity;
-import com.example.demo.entity.UserEntity;
-import com.example.demo.entity.WishlistEntity;
+import com.example.demo.model.entity.Cart;
+import com.example.demo.model.entity.User;
+import com.example.demo.model.entity.Wishlist;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.CartServices;
 import com.example.demo.services.UserServices;
@@ -23,10 +23,10 @@ public class UserServicesImplement implements UserServices {
 
     private final CartServices cartServices  ;
 
-    public UserEntity addUser(UserEntity user){
-        WishlistEntity userWishlist =wishlistServices.addWishlist(new WishlistEntity(0,0.0));
-        CartEntity userCart = cartServices.addCart(new CartEntity(0,0.0));
-        UserEntity savedUser = userRepository.save(user);
+    public User addUser(User user){
+        Wishlist userWishlist =wishlistServices.addWishlist(new Wishlist(0,0.0));
+        Cart userCart = cartServices.addCart(new Cart(0,0.0));
+        User savedUser = userRepository.save(user);
         savedUser.setWishlistId(userWishlist.getWishlistId());
         savedUser.setCartId(userCart.getCartId());
         userRepository.save(savedUser);
@@ -34,21 +34,21 @@ public class UserServicesImplement implements UserServices {
     }
 
     public void deleteUserById(Integer id) {
-        Optional<UserEntity> userOptional = userRepository.findById(id);
+        Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
-            UserEntity user = userOptional.get();
+            User user = userOptional.get();
             wishlistServices.deleteWishlistById(user.getWishlistId());
             cartServices.deleteCartById(user.getCartId());
             userRepository.deleteById(id);
         }
     }
 
-    public List<UserEntity> getAllUsers(){
+    public List<User> getAllUsers(){
         return userRepository.findAll();
     }
-    public UserEntity findUserById(Integer id){
-        Optional<UserEntity> returnedUser = this.userRepository.findById(id);
-        return returnedUser.orElseGet(UserEntity::new);
+    public User findUserById(Integer id){
+        Optional<User> returnedUser = this.userRepository.findById(id);
+        return returnedUser.orElseGet(User::new);
     }
 
 }

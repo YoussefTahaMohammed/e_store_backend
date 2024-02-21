@@ -1,20 +1,21 @@
-package com.example.demo.entity;
+package com.example.demo.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
-
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
 import java.util.List;
-@Setter
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity()
+@Entity
 @Table(name = "products")
 
-public class ProductEntity {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
@@ -38,8 +39,20 @@ public class ProductEntity {
     @Column(name = "category_id")
     private Integer categoryId;
 
+
     @Column(name = "brand_id")
     private Integer brandId;
+
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
 
     //--Relations--
 
@@ -47,38 +60,22 @@ public class ProductEntity {
     @JsonBackReference
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private CategoryEntity categoryEntity;
+    private Category category;
 
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "brand_id", insertable = false, updatable = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private BrandEntity brandEntity1;
+    private Brand brand;
 
-    @OneToMany(mappedBy = "productEntity")
+    @OneToMany(mappedBy = "product")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<ProductsCartEntity> productsCartEntities;
+    private List<ProductsCart> productsCartEntities;
 
-    @OneToMany(mappedBy = "productEntity")
+    @OneToMany(mappedBy = "product")
     @JsonManagedReference
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<ProductsWishlistEntity> productsWishlistEntities;
-
-
-    //--Custom Fields--
-
-    @Transient
-    private String brandName;
-
-    @Transient
-    private String categoryName;
-
-    public String getBrandName() {
-        return this.brandEntity1.getBrandName();
-    }
-    public String getCategoryName() {
-        return this.categoryEntity.getCategoryName();
-    }
+    private List<ProductsWishlist> productsWishlistEntities;
 
 }

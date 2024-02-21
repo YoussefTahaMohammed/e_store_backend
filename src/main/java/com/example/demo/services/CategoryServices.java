@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.entity.CategoryEntity;
+import com.example.demo.model.entity.Category;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,9 +11,10 @@ import java.util.Map;
 @Service
 public interface CategoryServices {
 
-    Map<String, String> addCategory(CategoryEntity category);
+    Map<String, String> addCategory(Category category);
+    Category findCategoryById(Integer id);
 
-    List<CategoryEntity> getAllCategories();
+    List<Category> getAllCategories();
 
     void deleteCategoryById(Integer id);
 

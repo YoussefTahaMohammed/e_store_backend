@@ -2,12 +2,10 @@ package com.example.demo.controller;
 
 
 import com.example.demo.services.Impl.BrandServicesImplement;
-import com.example.demo.entity.BrandEntity;
+import com.example.demo.model.entity.Brand;
 import lombok.RequiredArgsConstructor;
 
-
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.Map;
@@ -20,13 +18,13 @@ public class BrandController {
     private final BrandServicesImplement brandServices;
 
     @PostMapping(path = "/addBrand")
-    public Map<String, String> addBrand(@RequestBody BrandEntity brand){
+    public Map<String, String> addBrand(@RequestBody Brand brand){
         return this.brandServices.addBrand(brand);
     }
 
 
     @GetMapping(path = "/getAllBrands")
-    public List<BrandEntity> getAllBrands(){
+    public List<Brand> getAllBrands(){
         return this.brandServices.getAllBrands();
     }
 

@@ -1,24 +1,28 @@
 package com.example.demo.services;
 
 
-import com.example.demo.entity.*;
-
+import com.example.demo.model.dto.ProductReqDTO;
+import com.example.demo.model.dto.ProductResDTO;
+import com.example.demo.model.dto.ProductUpdateReqDTO;
+import com.example.demo.model.entity.Product;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
-import java.util.Map;
+
 
 @Service
 public interface ProductServices {
 
-    Map<String, String> addProduct(ProductEntity product);
+    ProductResDTO addProduct(ProductReqDTO product);
 
-    List<ProductEntity> getAllProducts();
+    ProductResDTO updateProduct(ProductUpdateReqDTO productReqDTO);
 
-    ProductEntity findProductById(Integer id);
+    List<ProductResDTO> getAllProducts();
+
+    Product findProductById(Integer id);
 
     void addProductToCart(Integer productId, Integer userId);
 
