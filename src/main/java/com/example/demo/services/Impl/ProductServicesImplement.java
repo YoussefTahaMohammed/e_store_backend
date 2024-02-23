@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +65,15 @@ public class ProductServicesImplement implements ProductServices {
         productResDTO.setCategoryName(category.getCategoryName());
         productResDTO.setBrandName(brand.getBrandName());
         return productResDTO;
+    }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        Optional<Product>product =this.productRepository.findById(id);
+        if (product.isPresent()){
+            product.get().setDeletedAt(LocalDateTime.now());
+            this.productRepository.save(product.get());
+        }
     }
 
     public List<ProductResDTO> getAllProducts() {

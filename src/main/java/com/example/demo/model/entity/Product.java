@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+
 import java.time.LocalDateTime;
 import java.util.List;
 @Data
@@ -14,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "products")
+@Where(clause = "deleted_at is null")
 
 public class Product {
     @Id
@@ -43,7 +46,7 @@ public class Product {
     @Column(name = "brand_id")
     private Integer brandId;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at",nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     @Column(name = "updated_at")

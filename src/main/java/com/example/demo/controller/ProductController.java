@@ -4,14 +4,13 @@ package com.example.demo.controller;
 import com.example.demo.model.dto.ProductReqDTO;
 import com.example.demo.model.dto.ProductResDTO;
 import com.example.demo.model.dto.ProductUpdateReqDTO;
-import com.example.demo.model.entity.Product;
 import com.example.demo.services.ProductServices;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 
 @RestController
 @RequiredArgsConstructor
@@ -22,12 +21,16 @@ public class ProductController {
 
 
     @PostMapping(path = "/addProduct")
-    public ProductResDTO addProduct(@RequestBody ProductReqDTO product) {
+    public ProductResDTO addProduct(@RequestBody @Valid ProductReqDTO product) {
         return this.productServices.addProduct(product);
     }
     @PutMapping(path = "/updateProduct")
     public ProductResDTO updateProduct(@RequestBody ProductUpdateReqDTO product) {
         return this.productServices.updateProduct(product);
+    }
+    @DeleteMapping(path = "/deleteProduct")
+    public void deleteProduct(@RequestParam Integer id){
+        this.productServices.deleteProduct(id);
     }
 
     @GetMapping(path = "/getAllProducts")
@@ -49,4 +52,5 @@ public class ProductController {
     public void deleteProductFromCart(@RequestParam Integer productId, @RequestParam Integer userId) {
         this.productServices.deleteProductFromCart(productId, userId);
     }
+
 }

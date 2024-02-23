@@ -20,6 +20,8 @@ public interface ProductServices {
 
     ProductResDTO updateProduct(ProductUpdateReqDTO productReqDTO);
 
+    public void deleteProduct(Integer id);
+
     List<ProductResDTO> getAllProducts();
 
     Product findProductById(Integer id);
